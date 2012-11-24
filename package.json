@@ -1,0 +1,13 @@
+{
+  "name": "express-node-starter",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.x",
+    "jade": "*",
+    "node-sass": "0.2.x"
+  }
+}
