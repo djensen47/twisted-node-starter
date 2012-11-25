@@ -7,7 +7,8 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , fs = require('fs');
 
 var app = express();
 
@@ -31,8 +32,17 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+// load the controllers
+var routeDir = 'routes',
+    files     = fs.readdirSync(routeDir);
+
+files.forEach(function(file) {
+  var filePath = path.resolve('./', routeDir, file);
+  console.log(filePath);
+  require(filePath)(app); 
+});
+
+// require('./routes/index')(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
