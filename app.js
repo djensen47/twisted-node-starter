@@ -15,7 +15,7 @@ var app = express();
 
 // express configuration
 app.configure(function(){
-  app.set('port', process.env.PORT || 3003);
+  app.set('port', process.env.PORT || process.env.VMC_APP_PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
