@@ -8,6 +8,10 @@
   "dependencies": {
     "express": "3.0.x",
     "jade": "*",
-    "node-sass": "0.2.x"
+    "node-sass": "0.2.x",
+    "mongoose": "3.4.x",
+    "bcrypt": "*",
+    "passport": "0.1.x",
+    "passport-local": "0.1.x"
   }
 }
