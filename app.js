@@ -9,7 +9,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
-  , mongoose = require('mongoose');
+  , mongoose = require('mongoose')
+  , passport = require('passport');
 
 var app = express();
 
@@ -24,10 +25,13 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  app.use(passport.initialize());
+  app.use(passport.session());  
   app.use(app.router);
-  //app.use(require('stylus').middleware(__dirname + '/public'));
-  app.use(require('node-sass').middleware({src: __dirname + '/public', dest: __dirname + '/public', debug: true}));
+  app.use(require('stylus').middleware(__dirname + '/public'));
+  //app.use(require('node-sass').middleware({src: __dirname + '/public', dest: __dirname + '/public', debug: true}));
   app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, 'vendor')));
 });
 
 app.configure('development', function(){
@@ -41,9 +45,10 @@ require('./config/passport_config')
 var routeDir = 'routes',
     files     = fs.readdirSync(routeDir);
 
+console.log("Loading routes:");
 files.forEach(function(file) {
   var filePath = path.resolve('./', routeDir, file);
-  console.log(filePath);
+  console.log("  "+filePath);
   require(filePath)(app); 
 });
 
