@@ -10,7 +10,8 @@ var express = require('express')
   , path = require('path')
   , fs = require('fs')
   , mongoose = require('mongoose')
-  , passport = require('passport');
+  , passport = require('passport')
+  , flash    = require('connect-flash')
 
 var app = express();
 
@@ -23,11 +24,20 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser('your secret here'));
+  app.use(express.cookieParser('12873649yruiwofyruyrqweruyqior2341'));
   app.use(express.session());
   app.use(passport.initialize());
-  app.use(passport.session());  
+  app.use(passport.session());
+  app.use(flash());
+
+  // app.use(function(req, res, next){
+  //   console.log(req.flash());
+  //   res.locals.flash = req.flash;
+  //   next();
+  // });
+
   app.use(app.router);
+
   app.use(require('stylus').middleware(__dirname + '/public'));
   //app.use(require('node-sass').middleware({src: __dirname + '/public', dest: __dirname + '/public', debug: true}));
   app.use(express.static(path.join(__dirname, 'public')));

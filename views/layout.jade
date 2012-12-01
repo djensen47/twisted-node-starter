@@ -8,12 +8,14 @@ html
 
     link(rel='stylesheet', href='/stylesheets/foundation.css')
 
-    script(src='/javascripts/foundation/modernizr.foundation.js', type='text/javascript')
+    script(src='/javascripts/modernizr.foundation.js', type='text/javascript')
     script(src='/javascripts/jquery.js', type='text/javascript')  
     script(src='/javascripts/foundation.min.js', type='text/javascript')
     script(src='/javascripts/app.js', type='text/javascript')
 
-  body
+
+  body(style="padding-top: 75px;")
+
     .fixed
       nav.top-bar
         ul
@@ -30,6 +32,23 @@ html
             li
               a(href="#") Link
 
+
     .row
-      .twelve.columns(style="background-color: #ccc;")
-        block content
+
+    - if (typeof flash != 'undefined')
+      .row
+        .twelve.columns
+          -if('info' in flash)
+            each msg in flash.info
+              .alert-box
+                = msg
+                a.close(href="") &times;
+          -if('error' in flash)
+            each msg in flash.error
+              .alert-box.alert
+                = msg
+                a.close(href="") &times;
+
+
+    block content
+

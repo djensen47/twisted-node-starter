@@ -13,6 +13,7 @@
     "mongoose": "3.4.x",
     "bcrypt": "*",
     "passport": "0.1.x",
-    "passport-local": "0.1.x"
+    "passport-local": "0.1.x",
+    "connect-flash": "*"
   }
 }
