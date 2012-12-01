@@ -14,6 +14,7 @@
     "bcrypt": "*",
     "passport": "0.1.x",
     "passport-local": "0.1.x",
-    "connect-flash": "*"
+    "connect-flash": "*",
+    "underscore": "*"
   }
 }
