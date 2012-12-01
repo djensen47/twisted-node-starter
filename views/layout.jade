@@ -2,9 +2,34 @@ doctype 5
 html
   head
     title Twisted Node Starter
+
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width")
+
     link(rel='stylesheet', href='/stylesheets/foundation.css')
-    script(src='/javascripts/jquery.js', type='text/javascript')
+
+    script(src='/javascripts/foundation/modernizr.foundation.js', type='text/javascript')
+    script(src='/javascripts/jquery.js', type='text/javascript')  
+    script(src='/javascripts/foundation.min.js', type='text/javascript')
     script(src='/javascripts/app.js', type='text/javascript')
-    
+
   body
-    block content
+    .fixed
+      nav.top-bar
+        ul
+          li.name 
+            h1
+              a(href="/") Title
+          li.toggle-topbar
+            a(href="#")
+        section
+          ul.left
+            li
+              a(href="") Link
+          ul.right
+            li
+              a(href="#") Link
+
+    .row
+      .twelve.columns(style="background-color: #ccc;")
+        block content
