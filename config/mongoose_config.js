@@ -27,5 +27,5 @@ if (process.env.VCAP_SERVICES) {
 }
 
 var mongourl = generateMognoUrl(mongo);
-console.log("Connecting to mongodb at #{mongo.hostname}:#{mongo.port}");
+console.log("Connecting to mongodb at "+mongo.hostname+":"+mongo.port);
 mongoose.connect(mongourl);
