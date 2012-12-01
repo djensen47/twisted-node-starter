@@ -35,7 +35,7 @@ html
 
     .row
 
-    - if (typeof flash != 'undefined')
+    - if (! _.isUndefined(flash))
       .row
         .twelve.columns
           -if('info' in flash)

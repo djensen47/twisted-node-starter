@@ -36,6 +36,11 @@ app.configure(function(){
   //   next();
   // });
 
+  app.use(function(req, res, next){
+      res.locals._ = require('underscore');
+      next();
+  });
+
   app.use(app.router);
 
   app.use(require('stylus').middleware(__dirname + '/public'));
