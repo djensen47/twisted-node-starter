@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  .row
+    .eight.columns.centered
+
+      .panel.radius
+        h1 Register
+        form(action="/register", method="POST")
+          .row
+            .two.mobile-one.columns
+              label.right.inline Username:
+            .ten.mobile-three.columns
+              input.eight(type="text", name="username", placeholder="Username")
+
+            .two.mobile-one.columns
+              label.right.inline Email:
+            .ten.mobile-three.columns
+              input.eight(type="text", name="email", placeholder="first.last@example.com")
+
+            .two.mobile-one.columns
+              label.right.inline Password:
+            .ten.mobile-three.columns
+              input.eight(type="password", placeholder="Password")
+
+            .two.mobile-one.columns 
+              &nbsp;
+            .ten.mobile-three.columns
+              input.radius.button(type="submit", value="Register")

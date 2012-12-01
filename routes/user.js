@@ -10,4 +10,14 @@ module.exports = function(app) {
       res.render('user/list', { userList: users });
     });
   });
+
+  app.get('/register', function(req, res){
+    req.flash('info', 'Please register.');
+    // TODO: check if the user is already logged in, redirect ro homepage
+    res.render('user/register');
+  });
+
+  app.post('/register', function(req, res){
+    res.redirect('/');
+  });
 }
