@@ -1,13 +1,13 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../app/models/user');
+var User = require('../models/user');
 
 // Use the LocalStrategy within Passport.
 
 passport.use(new LocalStrategy({
     usernameField: 'username'
   },
-  function(username, password, done) {
+  function (username, password, done) {
     // Find the user by username.  If there is no user with the given
     // username, or the password is not correct, set the user to `false` to
     // indicate failure.  Otherwise, return the authenticated `user`.
