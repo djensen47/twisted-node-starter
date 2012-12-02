@@ -1,0 +1,7 @@
+mixin input(type, name, classes, placeholder, value, errors)
+  - if (errors != null && errors[name])
+    input.error(class="#{classes}", type="#{type}", name="#{name}", placeholder="#{placeholder}", value="#{value}")
+    small.error(class="#{classes}")
+      =errors[name].message
+  - else
+    input(class="#{classes}", type="#{type}", name="#{name}", placeholder="#{placeholder}", value="#{value}")
