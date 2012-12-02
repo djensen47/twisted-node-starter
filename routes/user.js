@@ -47,6 +47,7 @@ module.exports = function(app) {
         });
       } else {
         req.flash('info', "Thank you for registering!");
+        req.login(user);
         res.redirect('/');
       }
     });
@@ -63,5 +64,10 @@ module.exports = function(app) {
     failureRedirect: '/login',
     failureFlash: true
   }));
+
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+  });  
 
 }

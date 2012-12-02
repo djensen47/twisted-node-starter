@@ -21,7 +21,7 @@ html
         ul
           li.name 
             h1
-              a(href="/") Title
+              a(href="/") Twisted Node Starter
           li.toggle-topbar
             a(href="#")
         section
@@ -29,8 +29,14 @@ html
             li
               a(href="") Link
           ul.right
-            li
-              a(href="/register") Register
+            - if (!isAuthenticated)
+              li
+                a(href="/register") Register
+              li
+                a(href="/login") Login
+            - else
+              li
+                a(href="/logout") Logout
 
 
     .row

@@ -37,6 +37,8 @@ app.configure(function(){
     // -- stupid undefined varaibles
     res.locals.errors = null;
     res.locals.flash = null;
+    res.locals.isAuthenticated = req.isAuthenticated();
+    console.log(req.isAuthenticated());
     next();
   });
   
