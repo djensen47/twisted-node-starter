@@ -1,4 +1,6 @@
 extends ../layout
+include ../mixins
+
 
 block content
   .row
@@ -11,17 +13,17 @@ block content
             .two.mobile-one.columns
               label.right.inline Username:
             .ten.mobile-three.columns
-              input.eight(type="text", name="username", placeholder="Username")
+              mixin input("text", "username", "eight", "Username", form.username, errors)
 
             .two.mobile-one.columns
               label.right.inline Email:
             .ten.mobile-three.columns
-              input.eight(type="text", name="email", placeholder="first.last@example.com")
+              mixin input("text", "email", "eight", "Email", form.email, errors)
 
             .two.mobile-one.columns
               label.right.inline Password:
             .ten.mobile-three.columns
-              input.eight(type="password", placeholder="Password")
+              mixin input("password", "password", "eight", "Password", form.password, errors)
 
             .two.mobile-one.columns 
               &nbsp;

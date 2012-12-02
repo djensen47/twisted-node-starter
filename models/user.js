@@ -1,4 +1,5 @@
 // User model
+var _ = require('underscore');
 
 var mongoose = require('mongoose'),
     bcrypt   = require('bcrypt'),
@@ -19,6 +20,17 @@ UserSchema.virtual('password').get(function() {
   salt = this.salt = bcrypt.genSaltSync(10);
   this.hash = bcrypt.hashSync(password, salt);
 });
+
+/*
+UserSchema.pre('save', function(next){
+  console.log(this);
+  if (_.isEmpty(this.password)) {
+    next(new mongoose.Error('Password must not be blank.'));
+  } else {
+    next();
+  }
+});
+*/
  
 UserSchema.methods.check_password = function(password, callback) {
   bcrypt.compare(password, this.hash, callback);

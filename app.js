@@ -12,6 +12,7 @@ var express = require('express')
   , mongoose = require('mongoose')
   , passport = require('passport')
   , flash    = require('connect-flash')
+  , sys      = require('sys');
 
 var app = express();
 
@@ -30,12 +31,16 @@ app.configure(function(){
   app.use(passport.session());
   app.use(flash());
 
-  // app.use(function(req, res, next){
-  //   console.log(req.flash());
-  //   res.locals.flash = req.flash;
-  //   next();
-  // });
 
+  app.use(function(req, res, next){
+    //initialize values that are expected by the layouts but may or may not have been passed through.
+    // -- stupid undefined varaibles
+    res.locals.errors = null;
+    res.locals.flash = null;
+    next();
+  });
+  
+  // underscore middleware
   app.use(function(req, res, next){
       res.locals._ = require('underscore');
       next();

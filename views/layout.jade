@@ -30,12 +30,12 @@ html
               a(href="") Link
           ul.right
             li
-              a(href="#") Link
+              a(href="/register") Register
 
 
     .row
 
-    - if (! _.isUndefined(flash))
+    - if (typeof flash != 'undefined' && !_.isEmpty(flash))
       .row
         .twelve.columns
           -if('info' in flash)
