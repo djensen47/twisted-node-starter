@@ -1,0 +1,28 @@
+extends ../layout
+include ../mixins
+
+
+block content
+  .row
+    .eight.columns.centered
+
+      .panel.radius
+        h1 Login
+        form(action="/login", method="POST")
+          .row
+            .two.mobile-one.columns
+              label.right.inline Username:
+            .ten.mobile-three.columns
+              mixin input("text", "username", "eight", "Username", "", errors)
+
+            .two.mobile-one.columns
+              label.right.inline Password:
+            .ten.mobile-three.columns
+              mixin input("password", "password", "eight", "Password", "", errors)
+
+            .two.mobile-one.columns 
+              &nbsp;
+            .ten.mobile-three.columns
+              input.radius.button(type="submit", value="Login")
+
+

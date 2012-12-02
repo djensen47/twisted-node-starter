@@ -1,4 +1,5 @@
 var _ = require('underscore');
+var passport = require('passport');
 var User = require('../models/user');
 
 module.exports = function(app) {
@@ -51,4 +52,16 @@ module.exports = function(app) {
     });
 
   });
+
+  app.get('/login', function(req, res){
+    res.render('user/login', { flash: req.flash() });
+  });
+
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    successFlash: "Welcome!",
+    failureRedirect: '/login',
+    failureFlash: true
+  }));
+
 }

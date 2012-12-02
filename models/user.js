@@ -32,7 +32,7 @@ UserSchema.pre('save', function(next){
 });
 */
  
-UserSchema.methods.check_password = function(password, callback) {
+UserSchema.methods.checkPassword = function(password, callback) {
   bcrypt.compare(password, this.hash, callback);
 };
 
