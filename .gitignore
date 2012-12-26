@@ -3,3 +3,5 @@ node_modules
 *.sublime-*
 manifest.yml
 public/stylesheets/*.css
+.idea
+*.iml
