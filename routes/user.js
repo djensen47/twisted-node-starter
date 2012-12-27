@@ -3,7 +3,15 @@ var passport = require('passport');
 var User = require('../models/user');
 
 module.exports = function(app) {
-  // app.all('/user/*', requireAuthentication, loadUser);
+
+  app.all(/^\/user\/(list).*$/, function(req, res, next) {
+    if (!req.isAuthenticated()) {
+      req.flash('info', "Login required to proceed.");
+      req.session.redirectAfterLogin = req.path;
+      res.redirect('/login');
+    }
+    next();
+  });
 
   app.get('/user/list', function(req, res){
     User.find({}).limit(10).exec(function(err, users){
@@ -58,12 +66,13 @@ module.exports = function(app) {
     res.render('user/login', { flash: req.flash() });
   });
 
-  app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    successFlash: "Welcome!",
-    failureRedirect: '/login',
-    failureFlash: true
-  }));
+  app.post(
+    '/login',
+    passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
+    function(req, res){
+      req.flash("Welcome @" + req.user.username + ".");
+      res.redirect( req.session.redirectAfterLogin || '/');
+    });
 
   app.get('/logout', function(req, res){
     req.logout();
