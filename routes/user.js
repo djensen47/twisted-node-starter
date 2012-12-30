@@ -1,8 +1,17 @@
 var _ = require('underscore');
 var passport = require('passport');
+var forms = require('forms'),
+    fields = forms.fields,
+    validators = forms.validaotors;
 var User = require('../models/user');
 
 module.exports = function(app) {
+
+  var registration_form = forms.create({
+    password: fields.string({required: true}),
+    username: fields.string({required: true}),
+    email:    fields.email({required: true})
+  });
 
   app.all(/^\/user\/(list).*$/, function(req, res, next) {
     if (!req.isAuthenticated()) {
