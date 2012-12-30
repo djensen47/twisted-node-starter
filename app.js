@@ -17,6 +17,7 @@ var express = require('express')
 var app = express();
 
 // express configuration
+// noinspection JSValidateTypes
 app.configure(function(){
   app.set('port', process.env.PORT || process.env.VMC_APP_PORT || 3000);
   app.set('views', __dirname + '/views');
