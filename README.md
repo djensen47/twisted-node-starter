@@ -12,3 +12,8 @@ This project consists of the following components
 - [Passport](http://passportjs.org/) for authentication
   - using [bcrypt](https://npmjs.org/package/bcrypt) to salt and encrpyt passwords
 - [Foundation 3](http://foundation.zurb.com/) as the CSS framework
+
+## To Do
+- [ ] Integrate Socket.io
+- [ ] Integrate the forums project
+- [ ] Fork forms to add functionality to make it easier to iterate through forms
