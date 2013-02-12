@@ -37,38 +37,34 @@ module.exports = function(app) {
 
   app.post('/register', function(req, res) {
     var user = new User(req.body);
-    user.save(function(err){
-      //manually check password (this is a pain)
-      if (_.isEmpty(req.body.password)) {
-        if (!err) {
-          err = {
-            message: "Validation failed",
-            name: "ValidationError",
-            errors: {}
-          }
+    //manually check password (this is a pain)
+    if (_.isEmpty(req.body.password)) {
+      if (!err) {
+        err = {
+          message: "Validation failed",
+          name: "ValidationError",
+          errors: {}
         }
-        err.errors.password = {message: "Password must not be blank."};
       }
-
-      if (err) {
-        console.log(err);
-        if (err.name != "ValidationError" && err.name != "MongooseError")  {
-          res.send(500, {error: err.message});
-        }
-        console.log("/register validation error");
-        req.flash('error', err.message);
-        res.render('user/register', {
-          form: req.body,
-          errors: err.errors, 
-          flash: req.flash()
-        });
-      } else {
-        req.flash('info', "Thank you for registering!");
-        req.login(user);
-        res.redirect('/');
+      err.errors.password = {message: "Password must not be blank."};
+    }
+    if (err) {
+      console.log(err);
+      if (err.name != "ValidationError" && err.name != "MongooseError")  {
+        res.send(500, {error: err.message});
       }
+      console.log("/register validation error");
+      req.flash('error', err.message);
+      res.render('user/register', {
+        form: req.body,
+        errors: err.errors, 
+        flash: req.flash()
+      });
+    } else user.save(function(err){
+      req.flash('info', "Thank you for registering!");
+      req.login(user);
+      res.redirect('/');
     });
-
   });
 
   app.get('/login', function(req, res){
