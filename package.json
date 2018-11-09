@@ -16,6 +16,6 @@
     "passport-local": "0.1.x",
     "connect-flash": "*",
     "underscore": "*",
-    "forms": "0.1.x"
+    "forms": ">=1.3.0"
   }
 }
